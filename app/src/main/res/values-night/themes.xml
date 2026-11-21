@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.GitDrop.Main" parent="android:Theme.Material.NoActionBar">
+        <!-- Dark background so no flash during Compose nav transitions in dark mode -->
+        <item name="android:windowBackground">#FF121010</item>
+    </style>
+</resources>

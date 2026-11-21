@@ -92,8 +92,21 @@ fun HomeScreen(vm: AppViewModel, onSettings: () -> Unit) {
             // ---------- header
             Row(Modifier.fillMaxWidth().padding(top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text("GitDrop", style = MaterialTheme.typography.headlineLarge)
-                    Text("Pick a folder, push it to GitHub.", style = MaterialTheme.typography.bodyMedium, color = cs.onSurfaceVariant)
+                    Text(
+                        "GitDrop",
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.Black,
+                            letterSpacing = (-1).sp,
+                        )
+                    )
+                    Text(
+                        "Pick a folder, push it to GitHub.",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.Light,
+                            letterSpacing = 0.1.sp,
+                        ),
+                        color = cs.onSurfaceVariant,
+                    )
                 }
                 if (vm.login.isNotEmpty()) {
                     Surface(shape = CircleShape, color = cs.surfaceVariant) {
