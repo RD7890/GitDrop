@@ -1,0 +1,10 @@
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+# NOTE: signing/signing-key.jks is intentionally COMMITTED (permanent release key).
