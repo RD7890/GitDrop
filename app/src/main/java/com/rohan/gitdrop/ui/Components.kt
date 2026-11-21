@@ -77,10 +77,10 @@ fun PipelineStep(
 ) {
     val cs = MaterialTheme.colorScheme
     val spec = tween<androidx.compose.ui.graphics.Color>(300, easing = FastOutSlowInEasing)
-    val nodeBg by animateColorAsState(if (done) cs.primary else cs.background, spec, label = "nodeBg")
-    val nodeBorder by animateColorAsState(if (done) cs.primary else cs.outline, spec, label = "nodeBorder")
-    val nodeTint by animateColorAsState(if (done) cs.onPrimary else cs.onSurfaceVariant, spec, label = "nodeTint")
-    val line by animateColorAsState(if (done) cs.primary else cs.outlineVariant, spec, label = "line")
+    val nodeBg = animateColorAsState(if (done) cs.primary else cs.background, spec, label = "nodeBg").value
+    val nodeBorder = animateColorAsState(if (done) cs.primary else cs.outline, spec, label = "nodeBorder").value
+    val nodeTint = animateColorAsState(if (done) cs.onPrimary else cs.onSurfaceVariant, spec, label = "nodeTint").value
+    val line = animateColorAsState(if (done) cs.primary else cs.outlineVariant, spec, label = "line").value
 
     Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
         Column(Modifier.width(44.dp).fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally) {
