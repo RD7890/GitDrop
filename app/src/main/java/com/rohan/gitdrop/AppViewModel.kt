@@ -112,10 +112,15 @@ class AppViewModel(private val app: Application) : AndroidViewModel(app) {
         branches = emptyList()
     }
 
+    @JvmName("updateAuthorName")
     fun setAuthorName(v: String) { authorName = v; prefs.authorName = v }
+    @JvmName("updateAuthorEmail")
     fun setAuthorEmail(v: String) { authorEmail = v; prefs.authorEmail = v }
+    @JvmName("updateDeleteRemoved")
     fun setDeleteRemoved(v: Boolean) { deleteRemoved = v; prefs.deleteRemoved = v }
+    @JvmName("updateIgnoreText")
     fun setIgnoreText(v: String) { ignoreText = v; prefs.ignore = v }
+    @JvmName("updateTheme")
     fun setTheme(v: Int) { theme = v; prefs.theme = v }
 
     // ------------------------------------------------------------------ repos & branches
@@ -223,8 +228,11 @@ class AppViewModel(private val app: Application) : AndroidViewModel(app) {
         }
     }
 
+    @JvmName("updateTargetPath")
     fun setTargetPath(v: String) { targetPath = v; prefs.lastTargetPath = v }
+    @JvmName("updateMessage")
     fun setMessage(v: String) { message = v }
+    @JvmName("updateDescription")
     fun setDescription(v: String) { description = v }
 
     // ------------------------------------------------------------------ push
