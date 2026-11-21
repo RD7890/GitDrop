@@ -65,24 +65,15 @@ jobs:
           printf 'signing.storeFile=signing/signing-key.jks\nsigning.storePassword=oeDPihCMSFy0gHW1GI\nsigning.keyAlias=gitdrop\nsigning.keyPassword=oeDPihCMSFy0gHW1GI\n' \
             > local.properties
 
-      # ── 6. Gradle wrapper (generated if the repo does not carry one) ──────────
+      # ── 6. Gradle wrapper (committed in repo) ────────────────────────────────
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
           cache-disabled: true
 
-      - name: Generate Gradle wrapper if missing
-        run: |
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ] || [ ! -f gradlew ]; then
-            TMP=$(mktemp -d)
-            (cd "$TMP" && gradle wrapper --gradle-version 8.10.2 --no-daemon)
-            mkdir -p gradle
-            cp -r "$TMP/gradle/wrapper" gradle/
-            cp "$TMP/gradlew" "$TMP/gradlew.bat" .
-            echo "Gradle wrapper generated"
-          fi
-          chmod +x ./gradlew
+      - name: Ensure Gradle wrapper is executable
+        run: chmod +x ./gradlew
 
       # ── 7. Android SDK licences ───────────────────────────────────────────────
       - name: Accept Android SDK licences
