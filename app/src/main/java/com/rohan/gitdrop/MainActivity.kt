@@ -7,9 +7,12 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -52,20 +55,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun AppNav(vm: AppViewModel) {
     val nav = rememberNavController()
-    // Clean fade-only transitions — no slide, no red flash between screens
+    val ease = FastOutSlowInEasing
     NavHost(
         navController = nav,
         startDestination = "splash",
-        enterTransition = { fadeIn(tween(260)) },
-        exitTransition = { fadeOut(tween(180)) },
-        popEnterTransition = { fadeIn(tween(260)) },
-        popExitTransition = { fadeOut(tween(180)) },
+        enterTransition = { fadeIn(tween(320, easing = ease)) + slideInHorizontally(tween(320, easing = ease)) { it / 10 } },
+        exitTransition = { fadeOut(tween(220, easing = ease)) },
+        popEnterTransition = { fadeIn(tween(320, easing = ease)) },
+        popExitTransition = { fadeOut(tween(220, easing = ease)) + slideOutHorizontally(tween(320, easing = ease)) { it / 10 } },
     ) {
         composable(
             "splash",
             enterTransition = { fadeIn(tween(0)) },
-            // Splash fades out quickly; home fades in on top — no gap between them
-            exitTransition = { fadeOut(tween(300)) },
+            exitTransition = { fadeOut(tween(400, easing = ease)) },
         ) {
             SplashScreen {
                 nav.navigate("home") { popUpTo("splash") { inclusive = true } }
